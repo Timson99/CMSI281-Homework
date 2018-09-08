@@ -1,7 +1,19 @@
-// highArray.java
-// demonstrates array class with high-level interface
-// to run this program: C>java HighArrayApp
-////////////////////////////////////////////////////////////////
+/** HighArray.java  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  HighArray.java
+ *  Purpose       :  
+ *  Date          :  2018-09-05
+ *  Author        :  Timothy Herrmann
+ *  Description   :  N/A  
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Revision History:
+ *  ------------------
+ *    Ver      Date     Modified by:  Description for change/modification
+ *   -----  ----------  ------------  -------------------------------------------------------------------
+ *   1.0.0  2018-01-16  T. Herrmann   Initial Version
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 public class HighArray
 {
@@ -61,6 +73,10 @@ public class HighArray
         System.out.println("");
     }
     
+    /**
+      * A method return max value in the high array
+      * @return   long          returns max value, or -1 if array is empty
+      */
     public long getMax() {
         
         long max = 0;
@@ -75,8 +91,14 @@ public class HighArray
         else {
             return -1;
         }
+        //END getMax()
     }
     
+    /**
+      * A method return how many occurrences in the array match the passed in value
+      * @param    value long    value in the array
+      * @return   long          number of occurrences of value
+      */
     private long howManyValueDups(long value) {
         int counter = 0;
         for(int i = 0; i < nElems; i++) {
@@ -85,24 +107,26 @@ public class HighArray
             }
         }
         return counter;
+        //END howManyValueDups()
     }
+    
+    /**
+      * A method to remove all duplicates AFTER the first occurrence of a value
+      */
     public void noDups() {
-        for(int i = 0; i < nElems; i++) {
+        for(int i = 0; i < nElems; i++) { //Checks whole array
             if(this.howManyValueDups(a[i]) > 1) {
-                for(int j = i + 1; j < nElems; j++) {
+                for(int j = i + 1; j < nElems; j++) { //Checks after first appearance of number
                     if(a[j] == a[i]) {
-                        for(int k=j; k<nElems; k++) { // move higher ones down
+                        for(int k=j; k<nElems; k++) { // Adjusts indexes after deletion of element
                             a[k] = a[k+1];
                         }
                         nElems--;
                     }
                 }
-            }
-            
-        }
-        
-        
-        
+            } 
+        } 
+    //END noDups()
     }
 }
 

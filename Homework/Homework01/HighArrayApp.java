@@ -1,3 +1,25 @@
+/** HighArrayApp.java  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  HighArrayApp.java
+ *  Purpose       :  
+ *  Date          :  2018-09-05
+ *  Author        :  Timothy Herrmann
+ *  Description   :  N/A  
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Revision History:
+ *  ------------------
+ *    Ver      Date     Modified by:  Description for change/modification
+ *   -----  ----------  ------------  -------------------------------------------------------------------
+ *   1.0.0  2018-01-16  T. Herrmann   Initial Version
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+
+
 public class HighArrayApp {
     public static void main(String[] args) {
         int maxSize = 100; // array size
