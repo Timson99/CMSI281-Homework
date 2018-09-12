@@ -79,7 +79,7 @@
          size--;
       }
       
-      private void reverseHoleFiller( int index ) {
+      private void shiftRight( int index ) {
          size++;
          theList[size - 1] = theList[size - 2];
          for( int i = size - 2; i > index; i-- ) {
@@ -92,7 +92,7 @@
       making sure that if there isn't enough room in the list already, its size gets expanded by the amount of the STARTING_SIZE value. */
       public boolean insertValueAtIndex( int value, int index ) {
          if(checkIndex(index) && size < theList.length) {
-            reverseHoleFiller(index);
+            shiftRight(index);
             theList[index] = value;
             return true;
          } else {
@@ -119,7 +119,7 @@
       which adds a value at element zero of the list, moving all the other values to make room. */
       public boolean prepend( int valueToAdd ) {
         if( size != 0 && size < theList.length ) {
-            reverseHoleFiller(0);
+            shiftRight(0);
             theList[0] = valueToAdd;
             return true;
          } else {
