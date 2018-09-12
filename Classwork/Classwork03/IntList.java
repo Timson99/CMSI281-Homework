@@ -1,3 +1,19 @@
+   /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  IntList.java
+ *  Purpose       :  
+ *  Date          :  2018-09-12
+ *  Author        :  Timothy Herrmann
+ *  Description   :  N/A  
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Revision History:
+ *  ------------------
+ *    Ver      Date     Modified by:  Description for change/modification
+ *   -----  ----------  ------------  -------------------------------------------------------------------
+ *   1.0.0  2018-01-16  T. Herrmann   Initial Version
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
    
    class EmptyListException extends RuntimeException {
        EmptyListException(String s) {
@@ -11,6 +27,8 @@
       boolean insertValueAtIndex( int value, int index );
       int removeValueAtIndex( int index );
    }
+   
+   
    
    public class IntList implements IntListInterface {
        
@@ -139,7 +157,14 @@
          list.display();
          list.prepend( 1 );
          list.display();
-         list.insertValueAtIndex(65, 5);
+         list.insertValueAtIndex(4,3);
+         list.insertValueAtIndex(6,5);
+         list.insertValueAtIndex(8,7);
+         list.insertValueAtIndex(9,8);
+         list.insertValueAtIndex(10,9);
+         list.insertValueAtIndex(12,11);     
+         list.display();
+         list.prepend(0);
          list.display();
          System.out.println( list.getValueAtIndex( 7 ) );      // should return the value 19
          System.out.println( list.removeValueAtIndex( 3 ) );   // should return the value 7
