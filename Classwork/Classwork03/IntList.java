@@ -43,15 +43,9 @@
       }
 
       public int getValueAtIndex( int index ) throws ArrayIndexOutOfBoundsException {
-         if( size == 0 ) {
-            throw new ArrayIndexOutOfBoundsException( "The list is empty!" );   // maybe not the best...
-         } else if( index > size ) {
-            throw new ArrayIndexOutOfBoundsException( "The index value is too large" );
-         } else if( index < 0 ) {
-            throw new ArrayIndexOutOfBoundsException( "The index value is too small");
-         } else {
-            return theList[index];
-         }
+        checkIndex(index);
+        return theList[index];
+        
       }
 
       public boolean append( int valueToAdd ) {
