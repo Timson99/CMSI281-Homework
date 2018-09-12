@@ -91,13 +91,13 @@
      /* Your mission [should you decide to accept it], is to implement the insertValueAtIndex() method, 
       making sure that if there isn't enough room in the list already, its size gets expanded by the amount of the STARTING_SIZE value. */
       public boolean insertValueAtIndex( int value, int index ) {
-         if(checkIndex(index) && size < theList.length) {
-            shiftRight(index);
-            theList[index] = value;
-            return true;
-         } else {
-            throw new ArrayIndexOutOfBoundsException( "Array Size Too Small For Action");
-         }
+        checkIndex(index);
+        if(size == theList.length) {
+            expandArray();
+        }
+        shiftRight(index);
+        theList[index] = value;
+        return true;
       }
       
       /* Then, also add a method checkIndex() to validate an index value, and re-factor your code. */
@@ -118,7 +118,10 @@
        /* Also, add a new method prepend(), 
       which adds a value at element zero of the list, moving all the other values to make room. */
       public boolean prepend( int valueToAdd ) {
-        if( size != 0 && size < theList.length ) {
+        if( size != 0) {
+            if(size == theList.length) {
+                expandArray();
+            }   
             shiftRight(0);
             theList[0] = valueToAdd;
             return true;
@@ -135,6 +138,16 @@
           }
           System.out.println();
           System.out.println();
+      }
+      
+      private void expandArray() {
+        int[] tempArr = theList;
+        theList = new int[size + STARTING_SIZE];
+        
+        for(int i = 0; i < size; i++) {
+            theList[i] = tempArr[i];
+        }
+          
       }
       
        
@@ -165,6 +178,10 @@
          list.insertValueAtIndex(12,11);     
          list.display();
          list.prepend(0);
+         list.insertValueAtIndex(14,14); 
+         list.insertValueAtIndex(15,15); 
+         list.insertValueAtIndex(16,16);
+         list.insertValueAtIndex(18,18);
          list.display();
          System.out.println( list.getValueAtIndex( 7 ) );      // should return the value 19
          System.out.println( list.removeValueAtIndex( 3 ) );   // should return the value 7
