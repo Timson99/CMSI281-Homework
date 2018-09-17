@@ -15,17 +15,14 @@
  *   1.0.0  2018-01-16  T. Herrmann   Initial Version
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-
-
-
-
-
-public class HighArrayApp {
+ public class HighArrayApp {
+    
     public static void main(String[] args) {
         int maxSize = 100; // array size
         HighArray arr; // reference to array
         arr = new HighArray(maxSize); // create the array
-       
+       System.out.println(arr.getMax() + (arr.getMax() == -1 ? ": Correct, no elements in array yet": " : Incorrect"));
+       System.out.println("");
        //Population of Array
         arr.insert(77);
         arr.insert(99);
@@ -40,7 +37,7 @@ public class HighArrayApp {
         arr.display(); // display items
         int searchKey = 35; // search for item
         
-        
+        System.out.println("");
         //Search key Test
         if( arr.find(searchKey) ) {
             System.out.println("Found " + searchKey);
@@ -52,33 +49,37 @@ public class HighArrayApp {
             arr.delete(99);
             arr.display(); // display items again
         }       
-        
+        System.out.println("");
         //getMax() tests
         arr.display(); // display items
-        System.out.println(arr.getMax());
         arr.insert(100);
         arr.insert(600);
         arr.insert(560);
         arr.insert(4000);
-        arr.display();
+         System.out.println("");
+        System.out.println("Refill List:");
         System.out.println("");
+        arr.display();
+        
+        //Five Tests for getMax()
         System.out.println(arr.getMax() + (arr.getMax() == 4000 ? ": Correct": " : Incorrect"));
+        System.out.println("");
         arr.delete(4000);
         arr.display();
-        System.out.println("");
         System.out.println(arr.getMax() + (arr.getMax() == 600 ? ": Correct": " : Incorrect"));
+        System.out.println("");
         arr.delete(600);
         arr.display();
-        System.out.println("");
         System.out.println(arr.getMax() + (arr.getMax() == 560 ? ": Correct": " : Incorrect"));
+        System.out.println("");
         arr.delete(560);
         arr.display();
-        System.out.println("");
         System.out.println(arr.getMax() + (arr.getMax() == 100 ? ": Correct": " : Incorrect"));
+        System.out.println("");
         arr.delete(100);
         arr.display();
-        System.out.println("");
         System.out.println(arr.getMax() + (arr.getMax() == 88 ? ": Correct": " : Incorrect"));
+        System.out.println("");
         
         
         // noDups() tests
@@ -89,9 +90,32 @@ public class HighArrayApp {
         arr.insert(33);
         arr.insert(88);
         arr.insert(33);
+        
+        
         arr.display();
+        System.out.println("");
+        System.out.println("Removing Duplicates");
+        System.out.println("");
         arr.noDups();
         arr.display();
+        System.out.println("");
+        System.out.println("Refill List");
+        
+        arr.insert(22);
+        arr.insert(70);
+        arr.insert(66);
+        arr.insert(600);
+        arr.insert(11);
+        arr.insert(66);
+        arr.insert(50000);
+        
+        arr.display();
+        System.out.println("");
+        System.out.println("Removing Duplicates");
+        System.out.println("");
+        arr.noDups();
+        arr.display();
+        System.out.println("");
         
         
         
