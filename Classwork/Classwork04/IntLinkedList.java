@@ -132,6 +132,16 @@
         return idata;
           
       }
+      
+      public void display() {
+          Iterator it = getIteratorAt(0);
+          while(it.currentNode != null) {
+              System.out.print(it.getCurrentInt() + " ");
+              it.next();
+              
+          }
+          System.out.println("");
+      }
    }
    
    

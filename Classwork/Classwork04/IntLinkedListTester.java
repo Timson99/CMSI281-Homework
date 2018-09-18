@@ -44,20 +44,34 @@
          System.out.println( "Current Node is: " + myIt.getCurrentInt() );    // 13
          myIt.next();
          System.out.println( "Current Node is: " + myIt.getCurrentInt() );    // 17
-         
-         
+
+         System.out.println();
+         myList.display();
          myIt = myList.getIteratorAt(3);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
          System.out.println( "Removing Int " + myList.removeAt(3) ); 
          myIt = myList.getIteratorAt(3);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
          
+         System.out.println();
+         myList.display();  
          myIt = myList.getIteratorAt(6);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); //19
          System.out.println( "Adding Int 18 Between 17 and 19"); 
          myList.insertAt(6,18);
          myIt = myList.getIteratorAt(6);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         myList.display();
+         
+         System.out.println();
+         myList.display();  
+         myIt = myList.getIteratorAt(8);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); //19
+         System.out.println( "Adding Int 99 After 23"); 
+         myList.insertAt(9,99);
+         myIt = myList.getIteratorAt(8);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         myList.display();
          
          
          
