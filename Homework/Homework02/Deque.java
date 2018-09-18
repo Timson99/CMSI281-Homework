@@ -47,10 +47,10 @@ class Deque {
     public long removeLeft() { // put item at rear of queue
         if(isEmpty()) 
             return -1;
-        if(front == maxSize) { // deal with wraparound
-            front = 0;
+        if(rear == -1) { // deal with wraparound
+            rear = maxSize - 1;
         }
-        long temp = queArray[--rear]; // get value and incr front
+        long temp = queArray[rear--]; // get value and incr front
         
         nItems--; // one more item
         return temp;
@@ -60,8 +60,8 @@ class Deque {
         if(isFull()) 
             return;
         
-        if(rear == maxSize-1) { // deal with wraparound
-            rear = -1;
+        if(front == 0) { // deal with wraparound
+            front = maxSize;
         }
         queArray[--front] = j; // increment rear and insert
         nItems++; // one less item
