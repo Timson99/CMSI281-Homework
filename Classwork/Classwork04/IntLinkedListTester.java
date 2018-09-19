@@ -73,6 +73,34 @@
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
          myList.display();
          
+         System.out.println();
+         myList.display();  
+         myIt = myList.getIteratorAt(0);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); //19
+         System.out.println( "Adding 0 to the beginning"); 
+         myList.insertAt(0,0);
+         myIt = myList.getIteratorAt(0);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         myList.display();
+         
+         System.out.println();
+         myList.display();
+         myIt = myList.getIteratorAt(0);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         System.out.println( "Removing Int " + myList.removeAt(0) ); 
+         myIt = myList.getIteratorAt(0);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         myList.display();
+         
+         System.out.println();
+         myList.display();
+         myIt = myList.getIteratorAt(myList.getSize() - 1);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
+         System.out.println( "Removing Int " + myList.removeAt(0) ); 
+         myIt = myList.getIteratorAt(myList.getSize() - 1);
+         System.out.println( "Current Node is: " + myIt.getCurrentInt() );
+         myList.display();
+         
          
          
          

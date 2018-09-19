@@ -40,6 +40,7 @@
       
       public void removeFirst() {
         head = head.next;
+        size--;
       }
 
       private class Node {
@@ -108,7 +109,9 @@
             Node tempRef = it.getCurrentNode().next; //Save after node that the pre node is pointing at
             it.getCurrentNode().next = newNode; //Set the current Node next equal to the new node
             newNode.next = tempRef; //set the new node next equal to the after node
+            size++;
         }  
+        
       }
       
       public int removeAt(int index) {
@@ -127,6 +130,7 @@
             Node tempRef = it.getCurrentNode().next; //Save after node
             it = getIteratorAt(index - 1); //Put iterator at index before index being removed
             it.getCurrentNode().next = tempRef; //set before node next to after node
+            size--;
             
         }
         return idata;
