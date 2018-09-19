@@ -96,7 +96,7 @@
          myList.display();
          myIt = myList.getIteratorAt(myList.getSize() - 1);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() ); 
-         System.out.println( "Removing Int " + myList.removeAt(0) ); 
+         System.out.println( "Removing Int " + myList.removeAt(myList.getSize() - 1) ); 
          myIt = myList.getIteratorAt(myList.getSize() - 1);
          System.out.println( "Current Node is: " + myIt.getCurrentInt() );
          myList.display();
