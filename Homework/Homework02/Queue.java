@@ -1,5 +1,5 @@
  /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File          :  queue.java
+ *  File          :  Queue.java
  *  Purpose       :  
  *  Date          :  2018-09-17
  *  Author        :  Timothy Herrmann
@@ -21,7 +21,7 @@ from the first item inserted to the last, without indicating to the viewer wheth
 around the end of the array. Be careful that one item and no items display properly, no matter where front and rear are. */
 
  
-class Queue {
+public class Queue {
     
     private int maxSize;
     private long[] queArray;
