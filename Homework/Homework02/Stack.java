@@ -22,20 +22,46 @@ public class Stack {
     
     private CircularLinkedList list;
     private int size;
+    private int topInt;
     
     public Stack() {
         list = new CircularLinkedList();
         size = 0;
+        topInt = 0;
     }
     
-    public void insert(int data) {
+    private void setCurrentBefore(int data) {
+        int counter = 0;
+        while(list.getNextInt() != data && counter < size) {
+            list.step();
+            counter++;
+        }
+        
+    }
+    
+    public void push(int data) {
+        topInt = data;
+        size++;
         list.insert(data);
     }
     
-    public int remove() {
-        return list.remove();
+    public int pop() {
+        int tempInt, tempIntNext; 
+        tempInt = topInt;
+        tempIntNext = list.getNextInt();
+        setCurrentBefore(tempInt);
+        list.removeNext();
+        setCurrentBefore(tempIntNext);
+        size--;
+        topInt = list.getInt();
+        return tempInt;
+        
+        
     }
-    public int getTop() {
+    public int peek() {
+        if(size == 0) {
+            return -1;
+        }
         return list.getInt();
     }
     

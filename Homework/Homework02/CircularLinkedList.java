@@ -56,7 +56,11 @@
         size++;
       }
       
-      public int remove() {
+      /* 
+        removes next node
+        steps to node after node removed
+      */
+      public int removeNext() {
         Node currentRef = current;
         step();
         currentRef.next = current.next;
@@ -81,6 +85,9 @@
       public int getInt() {
             return current.data;
       }
+      public int getNextInt() {
+            return current.next.data;
+      }
       
       
       public void step() {
@@ -89,13 +96,13 @@
       
       public void display() {
           Node currentRef = current;
-          System.out.print(getInt() + " ");
           step();
           while(current != currentRef) {
               System.out.print(getInt() + " ");
               step();
               
           }
+          System.out.print(getInt() + " ");
           System.out.println("");
       }
  }

@@ -37,11 +37,33 @@
         theQueue.insert(60); // (wraps around)
         theQueue.insert(70);
         theQueue.insert(80);
-        
         System.out.println("");
         theQueue.display();
-        System.out.println("");
+        System.out.println(""); 
+    
         
+        
+        while( !theQueue.isEmpty() ) { // remove and display
+            long n = theQueue.remove(); // (40, 50, 60, 70, 80)
+            System.out.print(n);
+            System.out.print("");
+        }
+        
+        theQueue.insert(0);
+        theQueue.insert(1);
+        theQueue.insert(2);
+        theQueue.insert(3);
+        theQueue.insert(4);
+        theQueue.remove();
+        theQueue.remove();
+        theQueue.remove();
+        theQueue.remove();
+        theQueue.insert(5);
+        theQueue.insert(6);
+        theQueue.insert(7);
+        theQueue.insert(8);
+        System.out.println("");
+        theQueue.display();
         
         while( !theQueue.isEmpty() ) { // remove and display
             long n = theQueue.remove(); // (40, 50, 60, 70, 80)

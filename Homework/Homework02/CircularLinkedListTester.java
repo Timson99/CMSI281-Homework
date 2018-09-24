@@ -45,16 +45,16 @@ public class CircularLinkedListTester {
          myList.step();
          System.out.println( "Current Node is: " + myList.getInt() );    // 17
 
-         System.out.println();
+        System.out.println();
          myList.display();
          System.out.println( "Current Node is: " + myList.getInt() ); 
-         System.out.println( "Removing Int " + myList.remove() ); 
+         System.out.println( "Removing Int " + myList.removeNext() ); 
          System.out.println( "Current Node is: " + myList.getInt() ); 
          
          System.out.println();
          myList.display();  
          System.out.println( "Current Node is: " + myList.getInt() ); //19
-         System.out.println( "Adding Int 18 Between 17 and 19"); 
+         System.out.println( "Adding Int 18"); 
          myList.insert(18);
          System.out.println( "Current Node is: " + myList.getInt() ); 
          myList.display();
@@ -62,10 +62,21 @@ public class CircularLinkedListTester {
          System.out.println();
          myList.display();  
          System.out.println( "Current Node is: " + myList.getInt() ); //19
-         System.out.println( "Adding Int 99 After 23"); 
+         System.out.println( "Adding Int 99"); 
          myList.insert(99);
          System.out.println( "Current Node is: " + myList.getInt() ); 
          myList.display();
+         
+         
+         System.out.println("\nCircular Step Test: \n");
+         for(int i = 0; i < 2 * myList.getSize(); i++) {
+            myList.step();
+            System.out.print( " " + myList.getInt() + " " );
+            if(i == myList.getSize() - 1)
+                System.out.println("\n");
+            
+         }
+         System.out.println("\n");
          
       }
       
