@@ -59,13 +59,13 @@ public class IntQueue {
          System.out.println();
          testQueue.display();
          System.out.println();
-         System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // 57
-         System.out.println( "Removing top thing: " + testQueue.remove() );         // 57 removed
-         System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // 51
-         System.out.println( "Removing top thing: " + testQueue.remove() );         // 51 removed
-         System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // 47
-         System.out.println( "Removing top thing: " + testQueue.remove() );         // 47 removed
-         System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // 43
+         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 57
+         System.out.println( "Removing front thing: " + testQueue.remove() );         // 57 removed
+         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 51
+         System.out.println( "Removing front thing: " + testQueue.remove() );         // 51 removed
+         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 47
+         System.out.println( "Removing front thing: " + testQueue.remove() );         // 47 removed
+         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 43
          testQueue.insert( testQueue.remove() + testQueue.remove() );
          System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // what'll it be?
          System.out.println();
