@@ -29,26 +29,26 @@ public class TreeQueue {
       
       public void insertInOrder( BinaryTree itemToinsert ) {
          int size = myQueue.getSize();
-         outer : for(int i = 0; i < size; i++) {
+         outer : for(int i = size - 1; i >= 0; i--) {
             int temp = myQueue.getIteratorAt(i).getCurrentTree().getRootFrequency();
-            if(i != myQueue.getSize() - 1) {
+            if(i != 0) {
                 int thisTreeF = itemToinsert.getRootFrequency();
                 int currentTreeF = myQueue.getIteratorAt(i).getCurrentTree().getRootFrequency();
-                int nextTreeF = myQueue.getIteratorAt(i+1).getCurrentTree().getRootFrequency();
+                int nextTreeF = myQueue.getIteratorAt(i-1).getCurrentTree().getRootFrequency();
                 System.out.println(thisTreeF + " " + currentTreeF + " " + nextTreeF + " ");
-                if(i == 0 && thisTreeF >= currentTreeF ) {
-                    myQueue.insertAt(0, itemToinsert);
+                if(i == size-1 && thisTreeF <= currentTreeF ) {
+                    myQueue.insertAt(size, itemToinsert);
                     break outer;
                 }
                 else {
-                    if(thisTreeF <= currentTreeF && thisTreeF >= nextTreeF ) {
-                        myQueue.insertAt(i + 1, itemToinsert);
+                    if(thisTreeF <= nextTreeF && thisTreeF > currentTreeF ) {
+                        myQueue.insertAt(i, itemToinsert);
                         break outer;
                     }
                 }
             }
             else {
-                myQueue.insertAt(i, itemToinsert);
+                myQueue.insertAt(0, itemToinsert);
                 break outer;
             }
         }
