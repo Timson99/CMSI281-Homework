@@ -22,7 +22,7 @@ public class HuffmanApp {
     
     public static void main(String[] args) {
         
-        HuffmanTree hf = new HuffmanTree("QPWOEFBDBWYUDUFVWYFGUWIWUIWHFNIVBIDGU IUWFI\nWOFHHFWHFOW\nWFIWUFGIWGFZ");
+        HuffmanTree hf = new HuffmanTree("SUSIE SAYS IT IS EASY\n");
     }
 
 }

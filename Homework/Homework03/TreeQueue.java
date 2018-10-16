@@ -35,7 +35,7 @@ public class TreeQueue {
                 int thisTreeF = itemToinsert.getRootFrequency();
                 int currentTreeF = myQueue.getIteratorAt(i).getCurrentTree().getRootFrequency();
                 int nextTreeF = myQueue.getIteratorAt(i-1).getCurrentTree().getRootFrequency();
-                System.out.println(thisTreeF + " " + currentTreeF + " " + nextTreeF + " ");
+                
                 if(i == size-1 && thisTreeF <= currentTreeF ) {
                     myQueue.insertAt(size, itemToinsert);
                     break outer;

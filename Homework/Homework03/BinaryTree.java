@@ -60,6 +60,27 @@ public class BinaryTree
         return current; // found it
     } // end find()
 
+    
+    public String getBinPath(Node localRoot, char key, String path, String lastPath )
+    {
+        if(localRoot == null) 
+            return "2";
+        else if(localRoot.character == key) {
+            if(path.charAt(path.length() - 1) != ' ')
+                path += lastPath + " ";
+            return path;
+        }
+        else
+        {
+            path += lastPath;
+            if(!getBinPath(localRoot.leftChild, key, path,"0").equals("2"))
+                return getBinPath(localRoot.leftChild, key, path,"0");
+            if(!getBinPath(localRoot.rightChild, key, path,"1").equals("2"))
+                return getBinPath(localRoot.rightChild, key, path,"1");
+            return "2";
+        }
+    }
+    
     public void insert(char id, int dd) {
         Node newNode = new Node(); // make new node
         newNode.character = id; // insert data

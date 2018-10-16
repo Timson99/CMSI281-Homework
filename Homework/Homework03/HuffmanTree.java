@@ -3,58 +3,59 @@ import java.util.PriorityQueue;
 public class HuffmanTree {
     
     
-    int[][] codeTable;
+    String[] codeTable;
+    int[] frequencyTable;
     BinaryTree huffmanTree;
     TreeQueue treeQ;
+    String binary = "";
+    String message;
     
     final int ASCII_A = 65;
     final int ASCII_Z = 90;
     final int ASCII_SP = 32;
     final int ASCII_LF = 10;
-    final int FREQUENCY = 0;
-    final int CODE = 1;
     
     
     HuffmanTree(String message) {
+        this.message = message;
         treeQ = new TreeQueue();
-        codeTable = new int[2][ASCII_Z - ASCII_A + 3];
+        frequencyTable = new int[ASCII_Z - ASCII_A + 3];
         for(int i = 0; i < message.length(); i++) {
             char temp = message.charAt(i);
             if(temp == ASCII_SP) {
-                if(codeTable[FREQUENCY][ASCII_Z - ASCII_A + 1] == 0)
+                if(frequencyTable[ASCII_Z - ASCII_A + 1] == 0)
                     treeQ.insert(new BinaryTree());
                 
-                codeTable[FREQUENCY][ASCII_Z - ASCII_A + 1]++;
+                frequencyTable[ASCII_Z - ASCII_A + 1]++;
             }
             else if(temp == ASCII_LF) {
-                if(codeTable[FREQUENCY][ASCII_Z - ASCII_A + 2] == 0)
+                if(frequencyTable[ASCII_Z - ASCII_A + 2] == 0)
                     treeQ.insert(new BinaryTree());
                 
-                codeTable[FREQUENCY][ASCII_Z - ASCII_A + 2]++;
+                frequencyTable[ASCII_Z - ASCII_A + 2]++;
             }
             else if (ASCII_A <= temp && temp <= ASCII_Z ){
-               if(codeTable[FREQUENCY][temp - ASCII_A] == 0)
+               if(frequencyTable[temp - ASCII_A] == 0)
                     treeQ.insert(new BinaryTree());
                 
-               codeTable[FREQUENCY][temp - ASCII_A]++;
+               frequencyTable[temp - ASCII_A]++;
             }
-            else {
-            }   
+            else {}   
         }
-        
-        /* for(int i = 0; i < codeTable[FREQUENCY].length; i++) {
-            System.out.print(" " + codeTable[FREQUENCY][i] + " ");
+
+        /* for(int i = 0; i < frequencyTable.length; i++) {
+            System.out.print(" " + frequencyTable[i] + " ");
         } */
         int tmpSize = treeQ.getSize() - 1; 
         for(int i = 1; i <= message.length(); i++) {
-            for(int n = codeTable[FREQUENCY].length - 1; n >= 0; n--) {
-                if(codeTable[FREQUENCY][n] == i && tmpSize != -1 ) {
+            for(int n = frequencyTable.length - 1; n >= 0; n--) {
+                if(frequencyTable[n] == i && tmpSize != -1 ) {
                     char tmpChar;
                     int tmpFreq = i;
-                    if(n == codeTable[FREQUENCY].length - 2) {
+                    if(n == frequencyTable.length - 2) {
                         tmpChar = 's'; // insert data
                     }
-                    else if(n == codeTable[FREQUENCY].length - 1) {
+                    else if(n == frequencyTable.length - 1) {
                         tmpChar = 'l'; // insert data
                     }
                     else {
@@ -65,9 +66,7 @@ public class HuffmanTree {
                 }
             }
         }
-        
         while(treeQ.getSize() >= 2) {
-            System.out.println("Test1");
             BinaryTree temp1 = treeQ.remove();
             BinaryTree temp2 = treeQ.remove();
             BinaryTree combined = new BinaryTree();
@@ -79,19 +78,86 @@ public class HuffmanTree {
             else
                 treeQ.insert(combined);
             
-            treeQ.display();
+            //treeQ.display();
         }
         huffmanTree = treeQ.remove();
-        huffmanTree.displayTree();
+        //huffmanTree.displayTree();
+        createCodeTable();
+        displayFrequencyTable();
+        displayCodeTable();
+        displayHuffmanTree();
+    }
+    
+    private void createCodeTable() {
+        codeTable = new String[(ASCII_Z - ASCII_A) + 3];
+        char searchChar;
+        for(int i = 0; i < frequencyTable.length; i++) {
+            if(i == ASCII_Z + 1 - ASCII_A)
+                searchChar = 's';
+            else if(i == ASCII_Z + 2 - ASCII_A ) 
+                searchChar = 'l';
+            else if (0 <= i && i <= ASCII_Z - ASCII_A )
+                searchChar = (char)(i + ASCII_A);
+            else
+                searchChar = 0;
+            
+            String temp1 = huffmanTree.getBinPath(huffmanTree.getRoot().rightChild, searchChar, "","1");
+            String temp2 = huffmanTree.getBinPath(huffmanTree.getRoot().leftChild, searchChar, "","0");
+            System.out.print(" "+ temp1 + " " +temp2 + " ");
+            codeTable[i] = (temp1 == "2" ? temp2 : temp1);
+        }
+    }
+    
+    
+    public String encode() {
+       
+       return binary;
     }
     
     public String decode(String binary) {
+        
         return "";
     }
     
-    public String getCode(String binary) {
-        return "";
+    public void displayHuffmanTree() {
+        huffmanTree.displayTree();
     }
+    
+    public void displayFrequencyTable() {
+        String temp = "";
+        System.out.println("Letter         Frequency");
+        for(int i = 0; i < frequencyTable.length; i++) {
+            if(i == ASCII_Z - ASCII_A + 1)
+                temp = "sp";
+            else if(i == ASCII_Z - ASCII_A + 1)
+                temp = "lf";
+            else
+                temp = (char)(ASCII_A + i) + "";
+            System.out.print(temp + ": ");
+                    System.out.print(" " + frequencyTable[i] + " ");
+            System.out.println();
+        }
+    }
+    
+    public void displayCodeTable() {
+        String temp = "";
+        System.out.println("Letter         Binary Code");
+        for(int i = 0; i < codeTable.length; i++) {
+            if(i == ASCII_Z - ASCII_A + 1)
+                temp = "sp";
+            else if(i == ASCII_Z - ASCII_A + 1)
+                temp = "lf";
+            else
+                temp = (char)(ASCII_A + i) + "";
+            System.out.print(temp + ": ");
+            System.out.print(" " + codeTable[i] + " ");
+            System.out.println();
+            
+        }
+    }
+   
+    
+
     
     
     
