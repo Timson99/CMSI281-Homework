@@ -1,5 +1,3 @@
-import java.util.PriorityQueue;
-
 public class HuffmanTree {
     
     
@@ -82,7 +80,8 @@ public class HuffmanTree {
         }
         huffmanTree = treeQ.remove();
         //huffmanTree.displayTree();
-        createCodeTable();
+        System.out.println(encode());
+        System.out.println("Decoded : " + decode(encode()));
         //displayFrequencyTable();
         displayCodeTable();
         displayHuffmanTree();
@@ -109,13 +108,59 @@ public class HuffmanTree {
     
     
     public String encode() {
-       
+       createCodeTable();
+       String tempBinary = "";
+       int index = 0;
+       for(int i = 0; i < message.length(); i++) {
+           switch((int)message.charAt(i)) {
+           case ASCII_SP:
+                index = ASCII_Z + 1 - ASCII_A;
+                break;
+           case ASCII_LF:
+                index = ASCII_Z + 2 - ASCII_A;
+                break;
+           default:
+                index = (int)message.charAt(i) - ASCII_A;
+                break;
+        
+           }
+           tempBinary+=codeTable[index];
+       }
+       tempBinary = tempBinary.replaceAll(" ","");
+       binary = tempBinary;
        return binary;
     }
     
     public String decode(String binary) {
-        
-        return "";
+        String decodedStr = "";
+        while(binary.length() > 1) {
+            outer : for(int n = 2; n < binary.length(); n++) {
+               for(int i = 0; i < codeTable.length; i++) {
+                    if(codeTable[i].equals(binary.substring(0,n) + " ")){
+                        if(i == ASCII_Z + 1 - ASCII_A) {
+                            decodedStr += " ";
+                            binary = binary.substring(n,binary.length());
+                            break outer;
+                        }
+                        else if(i == ASCII_Z + 2 - ASCII_A) {
+                            decodedStr += "\n";
+                            binary = binary.substring(n,binary.length());
+                            break outer;
+                        }
+                        else {
+                            decodedStr += Character.toString((char)(i+ASCII_A));
+                            binary = binary.substring(n,binary.length());
+                            break outer;
+                        }
+                    }
+                    if(i == codeTable.length - 1 && n == binary.length() - 1) {
+                        binary = binary.substring(n);   
+                        break outer;
+                    }
+               }
+            }   
+        }
+        return decodedStr;
     }
     
     public void displayHuffmanTree() {

@@ -258,11 +258,12 @@ public class BinaryTree
         {
             Stack localStack = new Stack();
             isRowEmpty = true;
-            for(int j=0; j<nBlanks; j++) {
+            for(int j=0; j<(nBlanks); j++) {
                 System.out.print(" ");
             }
             while(globalStack.isEmpty()==false)
             {
+                boolean spLong = true;
                 Node temp = (Node)globalStack.pop();
                 if(temp != null)
                 {
@@ -278,9 +279,14 @@ public class BinaryTree
                     localStack.push(null);
                     localStack.push(null);
                 }
-                for(int j=0; j<nBlanks*2-2; j++) {
-                    System.out.print(" ");
+                for(int j=0; j<(nBlanks*2-2); j++) {
+                        System.out.print(" ");
                 }
+                if(spLong && nBlanks != 0)
+                    System.out.print(" ");
+                
+                spLong = !spLong;
+                    
             } // end while globalStack not empty
             System.out.println();
             nBlanks /= 2;
