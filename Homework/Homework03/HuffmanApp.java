@@ -22,7 +22,7 @@ public class HuffmanApp {
     
     public static void main(String[] args) {
         
-        HuffmanTree hf = new HuffmanTree("I WENT TO THE STORE AND BOUGHT SOME YAMS\n");
+        HuffmanTree hf = new HuffmanTree("HAPPY BIRTHDAY\nTO YOU");
     }
 
 }

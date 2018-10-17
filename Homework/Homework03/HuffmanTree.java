@@ -14,9 +14,41 @@ public class HuffmanTree {
     final int ASCII_LF = 10;
     
     
-    HuffmanTree(String message) {
+    public HuffmanTree(String message) {
+        
         this.message = message;
         treeQ = new TreeQueue();
+        createFrequencyTable();
+        initializeTreeQ();
+        
+        while(treeQ.getSize() >= 2) {
+            BinaryTree temp1 = treeQ.remove();
+            BinaryTree temp2 = treeQ.remove();
+            BinaryTree combined = new BinaryTree();
+            combined.insert((char)('+'), temp1.getRootFrequency() + temp2.getRootFrequency());
+            combined.getRoot().leftChild = temp1.getRoot();
+            combined.getRoot().rightChild = temp2.getRoot();
+            if(treeQ.getSize() != 0)
+                treeQ.insertInOrder(combined);
+            else
+                treeQ.insert(combined);
+        }
+        
+        huffmanTree = treeQ.remove();
+        createCodeTable();
+        encode();
+        //huffmanTree.displayTree();
+        //System.out.println(encode());
+        //System.out.println("Decoded : " + decode(encode()));
+        //displayFrequencyTable();
+        //displayCodeTable();
+        //displayHuffmanTree();
+    }
+    
+    
+   
+    
+    private void createFrequencyTable() {
         frequencyTable = new int[ASCII_Z - ASCII_A + 3];
         for(int i = 0; i < message.length(); i++) {
             char temp = message.charAt(i);
@@ -40,7 +72,9 @@ public class HuffmanTree {
             }
             else {}   
         }
-        
+    }
+    
+    private void initializeTreeQ() {
         int tmpSize = treeQ.getSize() - 1; 
         for(int i = 1; i <= message.length(); i++) {
             for(int n = frequencyTable.length - 1; n >= 0; n--) {
@@ -61,27 +95,6 @@ public class HuffmanTree {
                 }
             }
         }
-        while(treeQ.getSize() >= 2) {
-            BinaryTree temp1 = treeQ.remove();
-            BinaryTree temp2 = treeQ.remove();
-            BinaryTree combined = new BinaryTree();
-            combined.insert((char)('+'), temp1.getRootFrequency() + temp2.getRootFrequency());
-            combined.getRoot().leftChild = temp1.getRoot();
-            combined.getRoot().rightChild = temp2.getRoot();
-            if(treeQ.getSize() != 0)
-                treeQ.insertInOrder(combined);
-            else
-                treeQ.insert(combined);
-            
-            //treeQ.display();
-        }
-        huffmanTree = treeQ.remove();
-        //huffmanTree.displayTree();
-        System.out.println(encode());
-        System.out.println("Decoded : " + decode(encode()));
-        //displayFrequencyTable();
-        displayCodeTable();
-        displayHuffmanTree();
     }
     
     private void createCodeTable() {
@@ -103,9 +116,7 @@ public class HuffmanTree {
         }
     }
     
-    
     public String encode() {
-       createCodeTable();
        String tempBinary = "";
        int index = 0;
        for(int i = 0; i < message.length(); i++) {
@@ -119,7 +130,6 @@ public class HuffmanTree {
            default:
                 index = (int)message.charAt(i) - ASCII_A;
                 break;
-        
            }
            tempBinary+=codeTable[index];
        }
@@ -131,7 +141,7 @@ public class HuffmanTree {
     public String decode(String binary) {
         String decodedStr = "";
         while(binary.length() > 1) {
-            outer : for(int n = 2; n < binary.length(); n++) {
+            outer : for(int n = 2; n <= binary.length(); n++) {
                for(int i = 0; i < codeTable.length; i++) {
                     if(codeTable[i].equals(binary.substring(0,n) + " ")){
                         if(i == ASCII_Z + 1 - ASCII_A) {
@@ -150,18 +160,10 @@ public class HuffmanTree {
                             break outer;
                         }
                     }
-                    if(i == codeTable.length - 1 && n == binary.length() - 1) {
-                        binary = binary.substring(n);   
-                        break outer;
-                    }
-               }
-            }   
+                }
+            } 
         }
         return decodedStr;
-    }
-    
-    public void displayHuffmanTree() {
-        huffmanTree.displayTree();
     }
     
     public void displayFrequencyTable() {
@@ -196,12 +198,13 @@ public class HuffmanTree {
             
         }
     }
-   
     
+    public void displayHuffmanTree() {
+        huffmanTree.displayTree();
+    }
 
-    
-    
-    
-    
-    
 }
+
+
+
+
