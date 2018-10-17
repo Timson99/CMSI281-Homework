@@ -83,7 +83,7 @@ public class HuffmanTree {
         huffmanTree = treeQ.remove();
         //huffmanTree.displayTree();
         createCodeTable();
-        displayFrequencyTable();
+        //displayFrequencyTable();
         displayCodeTable();
         displayHuffmanTree();
     }
@@ -103,7 +103,6 @@ public class HuffmanTree {
             
             String temp1 = huffmanTree.getBinPath(huffmanTree.getRoot().rightChild, searchChar, "","1");
             String temp2 = huffmanTree.getBinPath(huffmanTree.getRoot().leftChild, searchChar, "","0");
-            System.out.print(" "+ temp1 + " " +temp2 + " ");
             codeTable[i] = (temp1 == "2" ? temp2 : temp1);
         }
     }
@@ -125,11 +124,11 @@ public class HuffmanTree {
     
     public void displayFrequencyTable() {
         String temp = "";
-        System.out.println("Letter         Frequency");
+        System.out.println("Frequency Table");
         for(int i = 0; i < frequencyTable.length; i++) {
             if(i == ASCII_Z - ASCII_A + 1)
                 temp = "sp";
-            else if(i == ASCII_Z - ASCII_A + 1)
+            else if(i == ASCII_Z - ASCII_A + 2)
                 temp = "lf";
             else
                 temp = (char)(ASCII_A + i) + "";
@@ -141,11 +140,11 @@ public class HuffmanTree {
     
     public void displayCodeTable() {
         String temp = "";
-        System.out.println("Letter         Binary Code");
+        System.out.println("Code Table");
         for(int i = 0; i < codeTable.length; i++) {
             if(i == ASCII_Z - ASCII_A + 1)
                 temp = "sp";
-            else if(i == ASCII_Z - ASCII_A + 1)
+            else if(i == ASCII_Z - ASCII_A + 2)
                 temp = "lf";
             else
                 temp = (char)(ASCII_A + i) + "";

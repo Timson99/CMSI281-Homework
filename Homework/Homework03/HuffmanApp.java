@@ -1,8 +1,8 @@
 /* Write a program to implement Huffman coding and decoding. It should do the following:
 Accept a text message, possibly of more than one line.
-Create a Huffman tree for this message.
-Create a code table.
-Encode the message into binary.
+Create a Huffman tree for this message.-
+Create a code table.-
+Encode the message into binary.-
 Decode the message from binary back to text.
 If the message is short, the program should be able to display the Huffman tree after creating it. 
 The ideas in Programming Projects 8.1, 8.2, and 8.3 might prove helpful. 
