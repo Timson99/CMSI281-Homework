@@ -40,10 +40,7 @@ public class HuffmanTree {
             }
             else {}   
         }
-
-        /* for(int i = 0; i < frequencyTable.length; i++) {
-            System.out.print(" " + frequencyTable[i] + " ");
-        } */
+        
         int tmpSize = treeQ.getSize() - 1; 
         for(int i = 1; i <= message.length(); i++) {
             for(int n = frequencyTable.length - 1; n >= 0; n--) {

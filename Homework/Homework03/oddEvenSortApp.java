@@ -41,16 +41,27 @@ class ArrayBub {
         System.out.println("");
     }
 
-    public void bubbleSort()
+    public void oddEvenSort()
     {
-        int out, in;
-        for(out=nElems-1; out>1; out--) {// outer loop (backward)
-            for(in=0; in<out; in++) { // inner loop (forward)
-                if( a[in] > a[in+1] ) // out of order?
-                    swap(in, in+1);// swap them
+        boolean wasSwapped = true;
+        int j;
+        while(wasSwapped) {
+            wasSwapped = false;
+            for(j=0; j < nElems-1; j++) {// outer loop (backward)
+                if(j%2 == 0 && a[j] > a[j+1] ) {// out of order?
+                    swap(j, j+1);// swap them
+                    wasSwapped = true;
+                }
+                
             }
+            for(j=0; j < nElems-1; j++) {// outer loop (backward)
+                if(j%2 == 1 && a[j] > a[j+1] ) {// out of order?
+                    swap(j, j+1);// swap them
+                    wasSwapped = true;
+                }
+            }
+
         }
-        
     } // end bubbleSort()
  
     private void swap(int one, int two)
@@ -80,7 +91,7 @@ public class oddEvenSortApp {
         arr.insert(66);
         arr.insert(33);
         arr.display(); // display items
-        arr.bubbleSort(); // bubble sort them
+        arr.oddEvenSort(); // bubble sort them
         arr.display(); // display them again
     } // end main()
 } // end class BubbleSortApp
