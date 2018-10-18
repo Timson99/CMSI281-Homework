@@ -8,10 +8,10 @@ public class HuffmanTree {
     String binary = "";
     String message;
     
-    final int ASCII_A = 65;
-    final int ASCII_Z = 90;
-    final int ASCII_SP = 32;
-    final int ASCII_LF = 10;
+    private static final int ASCII_A = 65;
+    private static final int ASCII_Z = 90;
+    private static final int ASCII_SP = 32;
+    private static final int ASCII_LF = 10;
     
     
     public HuffmanTree(String message) {
@@ -37,12 +37,6 @@ public class HuffmanTree {
         huffmanTree = treeQ.remove();
         createCodeTable();
         encode();
-        //huffmanTree.displayTree();
-        //System.out.println(encode());
-        //System.out.println("Decoded : " + decode(encode()));
-        //displayFrequencyTable();
-        //displayCodeTable();
-        //displayHuffmanTree();
     }
     
     
@@ -138,10 +132,10 @@ public class HuffmanTree {
        return binary;
     }
     
-    public String decode(String binary) {
+    public String decode() {
         String decodedStr = "";
         while(binary.length() > 1) {
-            outer : for(int n = 2; n <= binary.length(); n++) {
+            outer : for(int n = 1; n <= binary.length(); n++) {
                for(int i = 0; i < codeTable.length; i++) {
                     if(codeTable[i].equals(binary.substring(0,n) + " ")){
                         if(i == ASCII_Z + 1 - ASCII_A) {

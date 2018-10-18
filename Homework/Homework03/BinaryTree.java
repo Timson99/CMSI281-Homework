@@ -66,7 +66,7 @@ public class BinaryTree
         if(localRoot == null) 
             return "2";
         else if(localRoot.character == key) {
-            if(path.charAt(path.length() - 1) != ' ')
+            if(path.length() == 0 || path.charAt(path.length() - 1) != ' ')
                 path += lastPath + " ";
             return path;
         }
@@ -279,7 +279,7 @@ public class BinaryTree
                     localStack.push(null);
                     localStack.push(null);
                 }
-                for(int j=0; j<(nBlanks*2-2); j++) {
+                for(int j=0; j<(nBlanks*2-3); j++) {
                         System.out.print(" ");
                 }
                 if(spLong && nBlanks != 0)
