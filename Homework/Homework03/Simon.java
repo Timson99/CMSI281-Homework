@@ -266,6 +266,7 @@ public class Simon
                 System.out.println("               Game Over! Your final score is: " + score);
                 sleep(4000);
                 colorOrder.clear();
+				colorOrderNumbers.clear();
                 score = 0;
                 counter = 0;
                 numberAmt = -1;

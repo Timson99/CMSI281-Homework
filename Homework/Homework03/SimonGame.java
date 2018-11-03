@@ -14,7 +14,7 @@
 
 public class SimonGame
 {
-    static boolean flag = true;
+
     public static void main(String[] args)
     {
         
