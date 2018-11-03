@@ -1,18 +1,12 @@
    /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File          :  IntLinkedList.java
+ *  File          :  TreeLinkedList.java
  *  Purpose       :  
- *  Date          :  2018-09-17
+ *  Date          :  2018-11-02
  *  Author        :  Timothy Herrmann
- *  Description   :  N/A  
+ *  Description   :  Underlying Data structure of Tree Queue.  
  *  Notes         :  None
  *  Warnings      :  None
  *  Exceptions    :  None
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  Revision History:
- *  ------------------
- *    Ver      Date     Modified by:  Description for change/modification
- *   -----  ----------  ------------  -------------------------------------------------------------------
- *   1.0.0  2018-01-16  T. Herrmann   Initial Version
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
   
   

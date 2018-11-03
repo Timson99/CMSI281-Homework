@@ -1,15 +1,13 @@
-/* Write a program to implement Huffman coding and decoding. It should do the following:
-Accept a text message, possibly of more than one line.
-Create a Huffman tree for this message.-
-Create a code table.-
-Encode the message into binary.-
-Decode the message from binary back to text.
-If the message is short, the program should be able to display the Huffman tree after creating it. 
-The ideas in Programming Projects 8.1, 8.2, and 8.3 might prove helpful. 
-You can use String variables to store binary numbers as arrangements of the characters 1 and 0. 
-Don't worry about doing actual bit manipulation unless you really want to.
-12:40 - 2:40 Next Fri
-*/
+   /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  HuffmanApp.java
+ *  Purpose       :  Runs HuffmanTree Code
+ *  Date          :  2018-11-02
+ *  Author        :  Timothy Herrmann
+ *  Description   :  N/A  
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
 
 
 import java.util.*;
@@ -23,9 +21,10 @@ public class HuffmanApp {
         try {
             hf = new HuffmanTree(getString());
         }
-        catch(IOException ioe) {
-            System.out.println(ioe.toString());
-            return;
+        catch(Exception ioe) {
+            System.out.println("\nExiting Program Due to Input Output Error\n\n");
+            hf = null;
+            System.exit(0);
         }
         hf.displayFrequencyTable();
         hf.displayHuffmanTree();
@@ -41,5 +40,4 @@ public class HuffmanApp {
         String s = br.readLine();
         return s;   
     }
-
 }

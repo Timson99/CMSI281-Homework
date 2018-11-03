@@ -1,3 +1,17 @@
+   /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  HuffmanTree.java
+ *  Purpose       :  
+ *  Date          :  2018-11-02
+ *  Author        :  Timothy Herrmann
+ *  Description   :  Huffman Tree Object.  CONTAINS MAIN METHOD WITH TESTS 
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
+
+
+import java.io.*;
+
 public class HuffmanTree {
     
     
@@ -8,17 +22,29 @@ public class HuffmanTree {
     String binary = "";
     String message;
     
-    private static final int ASCII_A = 65;
+    private static final int ASCII_A = 65;    
     private static final int ASCII_Z = 90;
     private static final int ASCII_SP = 32;
     private static final int ASCII_LF = 10;
     
     
-    public HuffmanTree(String message) {
+    public HuffmanTree(String message) throws IllegalArgumentException {
         
         this.message = message;
+        
+        if(message.length() == 0)
+            throw new IllegalArgumentException("Error");
+        
         treeQ = new TreeQueue();
-        createFrequencyTable();
+        
+        try {
+            createFrequencyTable();
+        }
+        catch(IllegalArgumentException iae) {
+            System.out.println("\nError: " + iae.toString() + " is not valid ");
+            throw new IllegalArgumentException("Error");  
+        }
+        
         initializeTreeQ();
         
         while(treeQ.getSize() >= 2) {
@@ -38,9 +64,6 @@ public class HuffmanTree {
         createCodeTable();
         encode();
     }
-    
-    
-   
     
     private void createFrequencyTable() {
         frequencyTable = new int[ASCII_Z - ASCII_A + 3];
@@ -64,7 +87,9 @@ public class HuffmanTree {
                 
                frequencyTable[temp - ASCII_A]++;
             }
-            else {}   
+            else {
+                throw new IllegalArgumentException(Character.toString(temp));
+            }   
         }
     }
     
@@ -125,7 +150,8 @@ public class HuffmanTree {
                 index = (int)message.charAt(i) - ASCII_A;
                 break;
            }
-           tempBinary+=codeTable[index];
+           //if(index >= 0 && index <= ASCII_Z - ASCII_A || index ==ASCII_Z - ASCII_A + 1 || index == ASCII_Z + 2) //MAybe bad Fix later
+            tempBinary+=codeTable[index];
        }
        tempBinary = tempBinary.replaceAll(" ","");
        binary = tempBinary;
@@ -134,7 +160,7 @@ public class HuffmanTree {
     
     public String decode() {
         String decodedStr = "";
-        while(binary.length() > 1) {
+        while(binary.length() > 0) {
             outer : for(int n = 1; n <= binary.length(); n++) {
                for(int i = 0; i < codeTable.length; i++) {
                     if(codeTable[i].equals(binary.substring(0,n) + " ")){
@@ -197,6 +223,132 @@ public class HuffmanTree {
         huffmanTree.displayTree();
     }
 
+    public static void main(String[] args) {
+            
+            
+            System.out.println("\n   HUFFMAN TREE TESTER");
+            System.out.println("__________________________\n");
+            System.out.println(" Testing -- createFrequencyTable() ");
+            
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 1: ");
+            HuffmanTree hf = new HuffmanTree("ABCDEFGHIJKLMNOPQRSTUVWXYZ \n");
+            boolean match = true;
+            for(int i = 0; i < hf.frequencyTable.length; i++) {
+                if(hf.frequencyTable[i] != 1)
+                    match = false;
+             
+            }
+            if(match == true)
+                System.out.println("PASS");
+            else 
+                System.out.println("FAIL");
+            
+            //////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 2: ");
+            hf = new HuffmanTree("AAA\nZZZ");
+            match = true;
+            if(hf.frequencyTable[0] != 3 || hf.frequencyTable[ASCII_Z - ASCII_A] != 3 || hf.frequencyTable[ASCII_Z + 2 - ASCII_A] != 1)
+                match = false;
+
+            if(match == true)
+                System.out.println("PASS");
+            else 
+                System.out.println("FAIL");
+           
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 3: ");
+            hf = new HuffmanTree("BBDDD ");
+            match = true;
+            if(hf.frequencyTable[1] != 2 || hf.frequencyTable[3] != 3 || hf.frequencyTable[ASCII_Z + 1 - ASCII_A] != 1)
+                match = false;
+
+            if(match == true)
+                System.out.println("PASS");
+            else 
+                System.out.println("FAIL");
+           
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.println(" \nTesting -- encode(), createCodeTable() and decode() with decode() ");
+            
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 1: ");
+            String code = "SUSIE OOZEY IS FEELING WOOZY";
+            hf = new HuffmanTree(code);
+            System.out.println((hf.decode().equals(code) ? "PASS" : "FAIL"));
+            
+            //////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 2: ");
+            code = "I LIKE\nTO EAT\nSOUP";
+            hf = new HuffmanTree(code);
+            System.out.println((hf.decode().equals(code) ? "PASS" : "FAIL"));
+           
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("   TEST 3: ");
+            code = "ABCDEFGHIJKLMNOPQRSTUVWXYZ \n";
+            hf = new HuffmanTree(code);
+            System.out.println((hf.decode().equals(code) ? "PASS" : "FAIL"));
+            
+            /////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.println(" \nTesting -- Invalid Inputs\n");
+            
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.print("TEST 1: Lowercase ");
+            try {
+                hf = new HuffmanTree("abcdefg");
+            }
+            catch(IllegalArgumentException iae) {
+                System.out.println("  CAUGHT\n");
+            }
+            
+            
+            //////////////////////////////////////////////////////////////////////////////
+            
+            System.out.println("TEST 2: Weird Symbols ");
+            try {
+                hf = new HuffmanTree("^%^$&#*@");
+            }
+            catch(IllegalArgumentException iae) {
+                System.out.println("  CAUGHT\n");
+            }
+           
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.println("TEST 3: Numbers");
+            try {
+                hf = new HuffmanTree("12345");
+            }
+            catch(IllegalArgumentException iae) {
+                System.out.println("  CAUGHT\n");
+            }
+            
+            /////////////////////////////////////////////////////////////////////////////////
+            
+            System.out.println("TEST 4: Nothing");
+            try {
+                hf = new HuffmanTree("");
+            }
+            catch(IllegalArgumentException iae) {
+                System.out.println("  CAUGHT\n");
+            }
+            
+            /////////////////////////////////////////////////////////////////////////////////
+            
+            
+            System.out.println("\n\nEnd of Tester..........This project was very hard :P");
+            
+            
+            
+        }
 }
 
 

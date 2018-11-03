@@ -1,14 +1,16 @@
-// tree.java
-// demonstrates binary tree
-// to run this program: C>java TreeApp
-
-
-
+   /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          : BinaryTree.java
+ *  Purpose       :  
+ *  Date          :  2018-11-02
+ *  Author        :  Timothy Herrmann
+ *  Description   :  Provided by Book. Changed to hold int frequency and char data items for purposes of Huffman Tree 
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
 
 import java.io.*;
 import java.util.*; // for Stack class
-
-
 
 class Node
 {
@@ -25,9 +27,6 @@ class Node
         System.out.print("} ");
     }
 } // end class Node
-
-
-
 
 public class BinaryTree
 {
@@ -249,14 +248,14 @@ public class BinaryTree
 // -------------------------------------------------------------
     public void displayTree()
     {
-        Stack globalStack = new Stack();
+        Stack<Node> globalStack = new Stack<Node>();
         globalStack.push(root);
         int nBlanks = 32;
         boolean isRowEmpty = false;
         System.out.println("......................................................");
         while(isRowEmpty==false)
         {
-            Stack localStack = new Stack();
+            Stack<Node> localStack = new Stack<Node>();
             isRowEmpty = true;
             for(int j=0; j<(nBlanks); j++) {
                 System.out.print(" ");

@@ -1,19 +1,13 @@
-// bubbleSort.java
-// demonstrates bubble sort
-// to run this program: C>java BubbleSortApp
-////////////////////////////////////////////////////////////////
-
-/*Another simple sort is the odd-even sort. The idea is to repeatedly make two passes through the array. 
-On the first pass you look at all the pairs of items, a[j] and a[j+1], where j is odd (j = 1, 3, 5, …). 
-If their key values are out of order, you swap them. On the second pass you do the same for all 
-the even values (j = 2, 4, 6, …). You do these two passes repeatedly until the array is sorted. 
-Replace the bubbleSort() method in bubbleSort.java (Listing 3.1) with an oddEvenSort() method. 
-Make sure it works for varying amounts of data. You'll need to figure out how many times to do the two passes. 
-The odd-even sort is actually useful in a multiprocessing environment, where aseparate processor can operate on 
-each odd pair simultaneously and then on each even pair. Because the odd pairs are independent of each other, 
-each pair can be checked – and swapped, if necessary – 
-by a different processor. This makes for a very fast sort. */
-
+/** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File          :  oddEvenSortApp.java
+ *  Purpose       :  Includes ArrayBub and oddEvenSortApp classes
+ *  Date          :  2018-11-02
+ *  Author        :  Timothy Herrmann
+ *  Description   :  N/A  
+ *  Notes         :  None
+ *  Warnings      :  None
+ *  Exceptions    :  None
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
 
 class ArrayBub {
     
@@ -40,6 +34,14 @@ class ArrayBub {
         }
         System.out.println("");
     }
+    
+    public void clear() {
+        for(int j=0; j<nElems; j++)  {// for each element,
+            a[j] = 0;
+        }
+        nElems = 0;
+    }
+    
 
     public void oddEvenSort()
     {
@@ -77,6 +79,8 @@ public class oddEvenSortApp {
     
     public static void main(String[] args)
     {
+        System.out.println();
+        System.out.println("Test 1");
         int maxSize = 100; // array size
         ArrayBub arr; // reference to array
         arr = new ArrayBub(maxSize); // create the array
@@ -90,9 +94,52 @@ public class oddEvenSortApp {
         arr.insert(00);
         arr.insert(66);
         arr.insert(33);
+        System.out.print("Pre-Sort: ");
         arr.display(); // display items
         arr.oddEvenSort(); // bubble sort them
+        System.out.print("Post-Sort: ");
         arr.display(); // display them again
+        System.out.println();
+        
+        System.out.println("Test 2");
+        arr.insert(100000); // insert 10 items
+        arr.insert(560);
+        arr.insert(2);
+        arr.insert(1234567);
+        arr.insert(5674);
+        arr.insert(54);
+        arr.insert(12);
+        arr.insert(13);
+        arr.insert(9999);
+        arr.insert(67);
+        System.out.print("Pre-Sort: ");
+        arr.display(); // display items
+        arr.oddEvenSort(); // bubble sort them
+        System.out.print("Post-Sort: ");
+        arr.display(); // display them again
+        arr.clear();
+        System.out.println();
+        
+        System.out.println("Test 3");
+        arr.insert(2); // insert 10 items
+        arr.insert(1);
+        arr.insert(9);
+        arr.insert(5);
+        arr.insert(3);
+        arr.insert(4);
+        arr.insert(7);
+        arr.insert(6);
+        arr.insert(8);
+        arr.insert(10);
+        System.out.print("Pre-Sort: ");
+        arr.display(); // display items
+        arr.oddEvenSort(); // bubble sort them
+        System.out.print("Post-Sort: ");
+        arr.display(); // display them again
+        System.out.println();
+
+        
+        
     } // end main()
 } // end class BubbleSortApp
 

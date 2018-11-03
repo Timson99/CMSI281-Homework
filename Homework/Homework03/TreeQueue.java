@@ -1,18 +1,12 @@
    /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File          :  IntLinkedList.java
+ *  File          :  TreeQueue.java
  *  Purpose       :  
- *  Date          :  2018-09-17
+ *  Date          :  2018-11-02
  *  Author        :  Timothy Herrmann
- *  Description   :  N/A  
+ *  Description   :  Used a Priority Queue in HuffmanTree.java, with insertInOrder() doing the priority sorting. 
  *  Notes         :  None
  *  Warnings      :  None
  *  Exceptions    :  None
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  Revision History:
- *  ------------------
- *    Ver      Date     Modified by:  Description for change/modification
- *   -----  ----------  ------------  -------------------------------------------------------------------
- *   1.0.0  2018-01-16  T. Herrmann   Initial Version
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
 
 public class TreeQueue {
