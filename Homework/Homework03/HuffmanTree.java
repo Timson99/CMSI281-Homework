@@ -15,15 +15,16 @@ import java.io.*;
 public class HuffmanTree {
     
     
-    String[] codeTable;
-    int[] frequencyTable;
-    BinaryTree huffmanTree;
-    TreeQueue treeQ;
-    String binary = "";
-    String message;
+    private String[] codeTable;
+    private int[] frequencyTable;
+    private BinaryTree huffmanTree;
+    private TreeQueue treeQ;
+    private String binary = "";
+    private String message;
+    boolean singleLetterCase = false;
     
     private static final int ASCII_A = 65;    
-    private static final int ASCII_Z = 90;
+    private static final int ASCII_z = 90;
     private static final int ASCII_SP = 32;
     private static final int ASCII_LF = 10;
     
@@ -66,22 +67,22 @@ public class HuffmanTree {
     }
     
     private void createFrequencyTable() {
-        frequencyTable = new int[ASCII_Z - ASCII_A + 3];
+        frequencyTable = new int[ASCII_z - ASCII_A + 3];
         for(int i = 0; i < message.length(); i++) {
             char temp = message.charAt(i);
             if(temp == ASCII_SP) {
-                if(frequencyTable[ASCII_Z - ASCII_A + 1] == 0)
+                if(frequencyTable[ASCII_z - ASCII_A + 1] == 0)
                     treeQ.insert(new BinaryTree());
                 
-                frequencyTable[ASCII_Z - ASCII_A + 1]++;
+                frequencyTable[ASCII_z - ASCII_A + 1]++;
             }
             else if(temp == ASCII_LF) {
-                if(frequencyTable[ASCII_Z - ASCII_A + 2] == 0)
+                if(frequencyTable[ASCII_z - ASCII_A + 2] == 0)
                     treeQ.insert(new BinaryTree());
                 
-                frequencyTable[ASCII_Z - ASCII_A + 2]++;
+                frequencyTable[ASCII_z - ASCII_A + 2]++;
             }
-            else if (ASCII_A <= temp && temp <= ASCII_Z ){
+            else if (ASCII_A <= temp && temp <= ASCII_z ){
                if(frequencyTable[temp - ASCII_A] == 0)
                     treeQ.insert(new BinaryTree());
                 
@@ -117,14 +118,33 @@ public class HuffmanTree {
     }
     
     private void createCodeTable() {
-        codeTable = new String[(ASCII_Z - ASCII_A) + 3];
+        codeTable = new String[(ASCII_z - ASCII_A) + 3];
         char searchChar;
+        
+        int indexOfSingle = 0;
+        int numOfLetters = 0;
         for(int i = 0; i < frequencyTable.length; i++) {
-            if(i == ASCII_Z + 1 - ASCII_A)
+            codeTable[i] = "2";
+            if(frequencyTable[i] != 0) {
+                numOfLetters++;
+                indexOfSingle = i;
+            }
+            
+        }
+        if(numOfLetters == 1) {
+            singleLetterCase = true;
+            codeTable[indexOfSingle] = "0";
+            return;
+        }
+        
+        
+        
+        for(int i = 0; i < frequencyTable.length; i++) {
+            if(i == ASCII_z + 1 - ASCII_A)
                 searchChar = 's';
-            else if(i == ASCII_Z + 2 - ASCII_A ) 
+            else if(i == ASCII_z + 2 - ASCII_A ) 
                 searchChar = 'l';
-            else if (0 <= i && i <= ASCII_Z - ASCII_A )
+            else if (0 <= i && i <= ASCII_z - ASCII_A )
                 searchChar = (char)(i + ASCII_A);
             else
                 searchChar = 0;
@@ -141,16 +161,16 @@ public class HuffmanTree {
        for(int i = 0; i < message.length(); i++) {
            switch((int)message.charAt(i)) {
            case ASCII_SP:
-                index = ASCII_Z + 1 - ASCII_A;
+                index = ASCII_z + 1 - ASCII_A;
                 break;
            case ASCII_LF:
-                index = ASCII_Z + 2 - ASCII_A;
+                index = ASCII_z + 2 - ASCII_A;
                 break;
            default:
                 index = (int)message.charAt(i) - ASCII_A;
                 break;
            }
-           //if(index >= 0 && index <= ASCII_Z - ASCII_A || index ==ASCII_Z - ASCII_A + 1 || index == ASCII_Z + 2) //MAybe bad Fix later
+           //if(index >= 0 && index <= ASCII_z - ASCII_A || index ==ASCII_z - ASCII_A + 1 || index == ASCII_z + 2) //MAybe bad Fix later
             tempBinary+=codeTable[index];
        }
        tempBinary = tempBinary.replaceAll(" ","");
@@ -160,16 +180,31 @@ public class HuffmanTree {
     
     public String decode() {
         String decodedStr = "";
+        if(singleLetterCase == true) {
+            for(int i = 0; i < codeTable.length; i++) {
+                if(!codeTable[i].equals("2")) {
+                    while(decodedStr.length() < binary.length()) {
+                        if(i == ASCII_z + 1 - ASCII_A) 
+                            decodedStr += Character.toString((char)(ASCII_SP));
+                        else if(i == ASCII_z + 2 - ASCII_A) 
+                            decodedStr += Character.toString((char)(ASCII_LF));
+                        else 
+                            decodedStr += Character.toString((char)(i + ASCII_A));
+                    }
+                    return decodedStr;
+                }
+            }
+        }
         while(binary.length() > 0) {
             outer : for(int n = 1; n <= binary.length(); n++) {
                for(int i = 0; i < codeTable.length; i++) {
                     if(codeTable[i].equals(binary.substring(0,n) + " ")){
-                        if(i == ASCII_Z + 1 - ASCII_A) {
+                        if(i == ASCII_z + 1 - ASCII_A) {
                             decodedStr += " ";
                             binary = binary.substring(n,binary.length());
                             break outer;
                         }
-                        else if(i == ASCII_Z + 2 - ASCII_A) {
+                        else if(i == ASCII_z + 2 - ASCII_A) {
                             decodedStr += "\n";
                             binary = binary.substring(n,binary.length());
                             break outer;
@@ -190,9 +225,9 @@ public class HuffmanTree {
         String temp = "";
         System.out.println("Frequency Table");
         for(int i = 0; i < frequencyTable.length; i++) {
-            if(i == ASCII_Z - ASCII_A + 1)
+            if(i == ASCII_z - ASCII_A + 1)
                 temp = "sp";
-            else if(i == ASCII_Z - ASCII_A + 2)
+            else if(i == ASCII_z - ASCII_A + 2)
                 temp = "lf";
             else
                 temp = (char)(ASCII_A + i) + "";
@@ -206,9 +241,9 @@ public class HuffmanTree {
         String temp = "";
         System.out.println("Code Table");
         for(int i = 0; i < codeTable.length; i++) {
-            if(i == ASCII_Z - ASCII_A + 1)
+            if(i == ASCII_z - ASCII_A + 1)
                 temp = "sp";
-            else if(i == ASCII_Z - ASCII_A + 2)
+            else if(i == ASCII_z - ASCII_A + 2)
                 temp = "lf";
             else
                 temp = (char)(ASCII_A + i) + "";
@@ -233,8 +268,9 @@ public class HuffmanTree {
             /////////////////////////////////////////////////////////////////////////////////////////////
             
             System.out.print("   TEST 1: ");
-            HuffmanTree hf = new HuffmanTree("ABCDEFGHIJKLMNOPQRSTUVWXYZ \n");
+    //HuffmanTree hf = new HuffmanTree("ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz \n");
             boolean match = true;
+            HuffmanTree hf = new HuffmanTree("ABCDEFGHIJKLMNOPQRSTUVWXYZ \n");
             for(int i = 0; i < hf.frequencyTable.length; i++) {
                 if(hf.frequencyTable[i] != 1)
                     match = false;
@@ -250,7 +286,7 @@ public class HuffmanTree {
             System.out.print("   TEST 2: ");
             hf = new HuffmanTree("AAA\nZZZ");
             match = true;
-            if(hf.frequencyTable[0] != 3 || hf.frequencyTable[ASCII_Z - ASCII_A] != 3 || hf.frequencyTable[ASCII_Z + 2 - ASCII_A] != 1)
+            if(hf.frequencyTable[0] != 3 || hf.frequencyTable[90 - ASCII_A] != 3 || hf.frequencyTable[ASCII_z + 2 - ASCII_A] != 1)
                 match = false;
 
             if(match == true)
@@ -263,7 +299,7 @@ public class HuffmanTree {
             System.out.print("   TEST 3: ");
             hf = new HuffmanTree("BBDDD ");
             match = true;
-            if(hf.frequencyTable[1] != 2 || hf.frequencyTable[3] != 3 || hf.frequencyTable[ASCII_Z + 1 - ASCII_A] != 1)
+            if(hf.frequencyTable[1] != 2 || hf.frequencyTable[3] != 3 || hf.frequencyTable[ASCII_z + 1 - ASCII_A] != 1)
                 match = false;
 
             if(match == true)
