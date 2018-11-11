@@ -1,0 +1,61 @@
+
+Homework03 Evaluation
+======================
+
+Nice work on this assignment!
+Here are a couple of observations and comments:
+
+I like the way you output what you are doing with the tests in the
+oddEvenSortApp.  Try to remember that the convention is to use
+an upper case letter at the start of all class names and class files.
+This is a convention for many languages, not just Java.  Also, it is
+the convention to name your java file with the IDENTICAL name that is
+CONTAINED inside the file.  You have "oddEvenSortApp.java" that has
+the class "ArrayBub" as its main class.  You might get away with it
+sometimes, but not always, so be careful.  Following the convention
+is the safest bet.
+
+The Simon game works fine!  I was able to cheat a bit, though, by
+expanding my screen to maximum height so I could see multiple letters
+at the same time.  One of the problems with TUI's!!
+
+Huffman coding!! whoa....  Works great!  Nice work.
+
+scores:
+=============================
+XXXXX-Sorter.java
+   oddEvenSort implemented                   [1 pt.]
+   compiles                                  [1 pt.]
+   works as advertised                       [1 pt.]
+
+SimonGame.java
+   randomized array                          [1 pt.]
+   display/erase sequences                   [1 pt.]
+   check user's guess against array          [1 pt.]
+   increment letter count each iteration     [1 pt.]
+   play again message on incorrect entry     [1 pt.]
+   compiles                                  [1 pt.]
+   works as advertised                       [1 pt.]
+
+HuffmanCoding.java
+   count character occurrences               [1 pt.]
+   use some sort of queue to build tree      [1 pt.]
+   tree constructed correctly                [1 pt.]
+   message encoded correctly                 [1 pt.]
+   message decoded correctly                 [1 pt.]
+   compiles                                  [1 pt.]
+   works as advertised                       [1 pt.]
+
+Coding style                                 [1 pt.]
+Tests written to test all classes            [1 pt.]
+Headers in all files                         [1 pt.]
+
+Total credit is 13 for Sorter and either Simon or Huffman
+ extra credit is 7 points for other of Simon or Huffman
+-------------------------
+ Grand total is 20 points for all three
+
+you got 13 out of 13 which is 100% which is an A-plus
+
+you got 20 out of 13 which is 153.85% which is still an A-plus
+
