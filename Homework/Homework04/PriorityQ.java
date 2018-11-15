@@ -1,18 +1,12 @@
    /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File          :  IntLinkedList.java
+ *  File          :  PriorityQ.java
  *  Purpose       :  
- *  Date          :  2018-09-17
+ *  Date          :  2018-11-15
  *  Author        :  Timothy Herrmann
- *  Description   :  N/A  
+ *  Description   :  Wrapper Class for BinaryHeap.java. Represents Priority Queue Data Type
  *  Notes         :  None
  *  Warnings      :  None
  *  Exceptions    :  None
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  Revision History:
- *  ------------------
- *    Ver      Date     Modified by:  Description for change/modification
- *   -----  ----------  ------------  -------------------------------------------------------------------
- *   1.0.0  2018-01-16  T. Herrmann   Initial Version
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
 
 public class PriorityQ {
@@ -36,41 +30,6 @@ public class PriorityQ {
       }
       
       public void display() {
-        /*System.out.print(" Back : ");
-        for(int i = 0; i < myQueue.getSize(); i++) {
-            System.out.print("[" + myQueue.getIteratorAt(i).getCurrentInt() + "]");
-        }
-        System.out.print(" : Front"); */
         myQueue.print();
-          
-      }
-      
-            public static void main( String[] args ) {
-         PriorityQ testQueue = new PriorityQ();
-         testQueue.insert( 19 );
-         testQueue.insert( 23 );
-         testQueue.insert( 29 );
-         testQueue.insert( 31 );
-         testQueue.insert( 37 );
-         testQueue.insert( 41 );
-         testQueue.insert( 43 );
-         testQueue.insert( 47 );
-         testQueue.insert( 51 );
-         testQueue.insert( 57 );
-         System.out.println();
-         testQueue.display();
-         System.out.println();
-         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 57
-         System.out.println( "Removing front thing: " + testQueue.remove() );         // 57 removed
-         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 51
-         System.out.println( "Removing front thing: " + testQueue.remove() );         // 51 removed
-         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 47
-         System.out.println( "Removing front thing: " + testQueue.remove() );         // 47 removed
-         System.out.println( "The front of the queue: " + testQueue.peekAtFront() );      // 43
-         testQueue.insert( testQueue.remove() + testQueue.remove() );
-         System.out.println( "The top of the queue: " + testQueue.peekAtFront() );      // what'll it be?
-         System.out.println();
-         testQueue.display();
-         System.out.println();
       }
 }

@@ -1,7 +1,7 @@
     /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File          :  HuffmanApp.java
- *  Purpose       :  Runs HuffmanTree Code
- *  Date          :  2018-11-02
+ *  File          :  BinaryHeap.java
+ *  Purpose       :  Handles insertion and top deletion
+ *  Date          :  2018-11-15
  *  Author        :  Timothy Herrmann
  *  Description   :  N/A  
  *  Notes         :  None
@@ -122,7 +122,7 @@
          HeapNode indexNode = uriah.get(index);
          int rightChildIndex = getChildIndex( index, 'R' );
          int leftChildIndex = getChildIndex( index, 'L' );
-         if( leftChildIndex >= size || rightChildIndex >= size ) {   // base case:
+         if( leftChildIndex >= size && rightChildIndex >= size ) {   // base case:
             return;           //  we're already at the root, so we're done
          }
          else if( rightChildIndex >= size && leftChildIndex >= size) { //One child 
@@ -138,16 +138,17 @@
             }
          }
          else  { //Two Children
-            if(uriah.get(rightChildIndex).getKey() > uriah.get(leftChildIndex).getKey() ) { //Right greater than left
-                uriah.set(index, uriah.get(rightChildIndex));
-                uriah.set(rightChildIndex, indexNode);
-                bubbleDown(rightChildIndex);
-            }
-            else {
-                uriah.set(index, uriah.get(leftChildIndex));
-                uriah.set(leftChildIndex, indexNode);
-                bubbleDown(leftChildIndex);
-            }
+            if(uriah.get(rightChildIndex).getKey() > thisKey || uriah.get(leftChildIndex).getKey() > thisKey)
+                if(uriah.get(rightChildIndex).getKey() > uriah.get(leftChildIndex).getKey() ) { //Right greater than left
+                    uriah.set(index, uriah.get(rightChildIndex));
+                    uriah.set(rightChildIndex, indexNode);
+                    bubbleDown(rightChildIndex);
+                }
+                else {
+                    uriah.set(index, uriah.get(leftChildIndex));
+                    uriah.set(leftChildIndex, indexNode);
+                    bubbleDown(leftChildIndex);
+                }
          }
       }
       

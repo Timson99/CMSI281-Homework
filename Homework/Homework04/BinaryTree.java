@@ -1,7 +1,7 @@
 /** ````````~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  File          :  BinaryTree.java
- *  Purpose       :  Tree Code
- *  Date          :  2018-11-02
+ *  Purpose       :  In Order Traversal written personally. Tree Framework Copied from Data Structures Textbook. 
+ *  Date          :  2018-11-15
  *  Author        :  Timothy Herrmann
  *  Description   :  N/A  
  *  Notes         :  None
@@ -60,11 +60,10 @@ public class BinaryTree
 		return current;
 	}
 	
-	public void insert(int id, double dd)
+	public void insert(int id)
 	{
 		Node newNode = new Node();
 		newNode.iData = id;
-		newNode.dData = dd;
 		if(root==null)
 		{
 			root = newNode;
@@ -213,33 +212,23 @@ public class BinaryTree
 		return successor;
 	}
 	
-	private void preOrder(Node localRoot)
+	public void inOrder()
 	{
-		if(localRoot != null)
+		if(root != null)
 		{
-			System.out.print(localRoot.iData + " ");
-			preOrder(localRoot.leftChild);
-			preOrder(localRoot.rightChild);
+			inOrder(root.leftChild);
+            System.out.print("[" + root.iData + "]");
+			inOrder(root.rightChild);
 		}
 	}
-	
-	private void inOrder(Node localRoot)
+    
+    public void inOrder(Node thisNode)
 	{
-		if(localRoot != null)
+		if(thisNode != null)
 		{
-			inOrder(localRoot.leftChild);
-			System.out.print(localRoot.iData + " ");
-			inOrder(localRoot.rightChild);
-		}
-	}
-	
-	private void postOrder(Node localRoot)
-	{
-		if(localRoot != null)
-		{
-			postOrder(localRoot.leftChild);
-			postOrder(localRoot.rightChild);
-			System.out.print(localRoot.iData + " ");
+			inOrder(thisNode.leftChild);
+            System.out.print("[" + thisNode.iData + "]");
+			inOrder(thisNode.rightChild);
 		}
 	}
 	
