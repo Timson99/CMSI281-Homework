@@ -71,6 +71,10 @@
          }
          return result;
       }
+      
+      public int getValueAt(int index) {
+          return uriah.get(index).getKey();
+      }
 
      // this just prints the array values; it's left to the observer to figure out
      //  which HeapNode is which, in terms of parent and child
